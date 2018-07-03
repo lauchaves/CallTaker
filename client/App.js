@@ -3,9 +3,7 @@ import Login from  "./containers/login/login.container";
 import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
+export const App = () => 
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -13,8 +11,7 @@ class App extends Component {
         </header>
         <Login />
       </div>
-    );
-  }
-}
+;
+
 
 export default App;
