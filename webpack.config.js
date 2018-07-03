@@ -10,7 +10,7 @@ var webpack = require('webpack');
          filename: 'App.bundle.js'
      },
      module: {
-         loaders: [
+         rules: [
              {
                  test: /\.js$/,
                  loader: 'babel-loader',
