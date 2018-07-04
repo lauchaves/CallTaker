@@ -15,7 +15,7 @@ var webpack = require('webpack');
                  test: /\.js$/,
                  loader: 'babel-loader',
                  query: {
-                     presets: ['es2015']
+                     presets: ['env', 'react','stage-2']
                  }
              }
          ]

@@ -2,15 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './client/App';
-import { Provider } from 'mobx-react';
-import { browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
+import {createStore, combineReducers} from 'redux';
+import {reducer as formReducer} from 'redux-form';
+import Login from './client/containers/Login/LoginContainer';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
+//<Root key={`key-${Date.now()}`} store={store} history={browserHistory} />
+const reducers = {form: formReducer};
+const reducer = combineReducers(reducers);
+let store = createStore(reducer);
 
 ReactDOM.render(
-    <Provider>
-      <Root key={`key-${Date.now()}`} store={store} history={browserHistory} />
+    <Provider store={store}>
+      <Login />
     </Provider>, 
     document.getElementById('root')
 );
+
