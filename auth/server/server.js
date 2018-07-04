@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import { setupApis } from './api/api';
 
 let app = express();
 
@@ -9,8 +10,8 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.get('/', (req, res) => res.send('Hello World!'));
+setupApis(app);
 
 app.listen(4000, () => {
-    console.log('server started - 3000');
+    console.log('server started - 4000');
 });
