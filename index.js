@@ -15,9 +15,8 @@ const reducer = combineReducers(reducers);
 let store = createStore(reducer);
 
 ReactDOM.render(
-    <Provider store={store}>
-      <Login />
-    </Provider>, 
+
+      <Login />,
     document.getElementById('root')
 );
 

@@ -4,10 +4,11 @@ var webpack = require('webpack');
 
 
  module.exports = {
-     entry: './client/App.js',
+     entry: ['./client/App.js'],
      output: {
-         path: path.resolve(__dirname, 'build'),
-         filename: 'App.bundle.js'
+         path: __dirname,
+         publicPath: '/',
+         filename: 'bundle.js'
      },
      module: {
          rules: [
