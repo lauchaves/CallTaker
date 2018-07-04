@@ -4,16 +4,16 @@ import cf from './client.scss';
 import { Provider } from 'react-redux';
 import {createStore, combineReducers} from 'redux';
 import {reducer as formReducer} from 'redux-form';
-import Login from './containers/Login/LoginContainer';
+import Root from './components/Root';
+import { browserHistory } from 'react-router';
 
-//<Root key={`key-${Date.now()}`} store={store} history={browserHistory} />
 const reducers = {form: formReducer};
 const reducer = combineReducers(reducers);
 const store = createStore(reducer);
 
 ReactDOM.render(
       <Provider store={store}>
-        <Login />
+        <Root key={`key-${Date.now()}`} store={store} history={browserHistory} />
       </Provider>,
     document.getElementById('root')
 );
