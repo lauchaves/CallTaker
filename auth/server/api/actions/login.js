@@ -19,7 +19,7 @@ export const login = async (req, res) => {
     if (result.type == 'error') 
       res.status(400).send({error: [{status:400, message: result.msg, code: 10}]});
     else 
-      res.send(result);
+      res.status(200).send({ auth: true, token: result })
 
 };
 
