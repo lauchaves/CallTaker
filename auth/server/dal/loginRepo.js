@@ -1,34 +1,18 @@
-import { knex } from './../database/knex';
+import { knex } from '../database/knex';
 
-export const verifyUser = userData => {
-    
-    console.log(userData.email);
+export const verifyUser = async userData => {
     const email = userData.email;
-    const password = userData.email;
+    const password = userData.password;
+    const schema = 'call_taker';
+    const dbEmail =  await knex.select('email').where('email', email).from(`${schema}.user`);
+    const dbPassword =  await knex.select('password').where('password', password).from(`${schema}.user`);
+
+    if (!dbEmail.toString() || !dbPassword.toString()) {
+        const error = {type: 'error', msg: 'Cannot find user/password'};
+        return error;
+    };
     
-    const test = knex.select('*').from('user');
-    console.log(test.toString());
+    const success = { type: 'success', data: userData};
+    return success;
 
-
-
-    /* const email = userData.email;
-    const password = userData.email;
-
-    const dbEmail;
-    const dbPassword;
-
-    const test;
-
-    //test = knex.select('*').from('users');
-
-    console.log(test);
-
-   /* knex('user')
-    .where(qb => qb.where('email', email).
-    
-
-    if (email == dbEmail && password == dbPassword){
-        return true;
-    }
-    */
 };

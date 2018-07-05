@@ -1,25 +1,15 @@
 import knexBuilder from 'knex';
 
-let knex;
-
-export default { 
-    get knex() {
-        if (!knex) {
-            knex= new knexBuilder(
-                {
-                    client: 'postgresql',
-                    connection: {
-                        host: localhost,
-                        database: 'call_taker',
-                        user: 'postgres',
-                        port: 5432,
-                        password: 'postgres',
-                        application_name: 'cad',
-                        charset: 'utf8',
-                    }
-                });
-        }
-        return knex;
+export const knex= new knexBuilder(
+{
+    client: 'pg',
+    connection: {
+        host: '127.0.0.1',
+        database: 'postgres',
+        user: 'postgres',
+        port: 5432,
+        password: 'postgres',
+        application_name: 'cad',
+        charset: 'utf8',
     }
-
-}
+});
