@@ -1,6 +1,6 @@
 import { login as loginService } from './../../services/login'
 
-exports.login = async (req, res) => {
+const login = async (req, res) => {
     console.log('hello world2');
     const email = req.body.username;
     const password = req.body.password;
@@ -22,3 +22,5 @@ exports.login = async (req, res) => {
     return await loginService.login(userData);
 
 };
+
+ export default login;
