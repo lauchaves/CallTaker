@@ -1,4 +1,4 @@
-import actions from './actions/login';
+import actions from './actions/index';
 
 exports.setupApis = app => {
     app.get('/', (req, res) => res.send('What is up ')); // this is for testing
