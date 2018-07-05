@@ -1,6 +1,7 @@
-import { verifyUser } from './../dal/loginRepo'
+import { verifyUser } from './../dal/loginRepo';
 
-exports.login = async userData => {
+export const loginService = async userData => {
+    console.log('im at login service: ' + userData);
     return await verifyUser(userData);
     // token
 

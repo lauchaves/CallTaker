@@ -1,8 +1,8 @@
-import { login as loginService } from './../../services/login'
+import { loginService } from './../../services/login'
 
-const login = async (req, res) => {
-    console.log('hello world2');
-    const email = req.body.username;
+export const login = async (req, res) => {
+    console.log(req.body);
+    const email = req.body.email;
     const password = req.body.password;
 
     // if no username or password then send
@@ -11,16 +11,24 @@ const login = async (req, res) => {
       res.status(400).send(
         {errors: [{status:400, message: 'You need a username and password', code: 10}]}
       );
-      //res.status(400).send('You need a username and password');
-      return;
+      
+      return res;
       }
 
     const userData = {
         email: email,
         password: password
     };
-    return await loginService.login(userData);
 
+    console.log('actions: '+ userData);
+
+    const result = await loginService(userData);
+    // devolver result json dentro de response
+    console.log(result);
+    res.send(result);
 };
 
- export default login;
+
+
+ // api > actions > services > repos
+ // index punto de entrada
