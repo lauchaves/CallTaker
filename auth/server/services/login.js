@@ -4,15 +4,18 @@ import { secret } from './config';
 
 export const loginService = async userData => {
     const result = await verifyUser(userData);
-    
-    if (result.type == 'error') 
-        return result;
+
+    if (!result) {
+        const error = {type: 'error', msg: 'Cannot find user/password'};
+        return error;
+    }
     else {
-        const dbemail = result.data.email;
-        const dbpassword = result.data.password;
-    
-        //token here
-        const token = jwt.sign({email: dbemail, password: dbpassword}, secret);
+        const dbEmail = result.email
+        const dbUserId = result.user_id;
+        const dbUsername = result.user_name;
+
+        const token = jwt.sign({email: dbEmail, userId: dbUserId, username: dbUsername}, secret);
         return token;
     };
+
 };

@@ -5,7 +5,7 @@ export const login = async (req, res) => {
     const password = req.body.password;
 
     if (!email || !password) {
-      res.status(400).send({error: [{status:400, message: 'You need a username and password', code: 10}]});
+      res.status(400).send({auth: false, error: [{status:400, message: 'You need a username and password', code: 10}]});
       return res;
     };
 
@@ -17,9 +17,9 @@ export const login = async (req, res) => {
     const result = await loginService(userData);
 
     if (result.type == 'error') 
-      res.status(400).send({error: [{status:400, message: result.msg, code: 10}]});
+      res.status(400).send({auth: false, error: [{status:400, message: result.msg, code: 10}]});
     else 
-      res.status(200).send({ auth: true, token: result })
+      res.status(200).send({ auth: true, token: result });
 
 };
 
