@@ -11,8 +11,7 @@ export const verifyUser = async userData => {
         const error = {type: 'error', msg: 'Cannot find user/password'};
         return error;
     };
-    
+
     const success = { type: 'success', data: userData};
     return success;
-
 };

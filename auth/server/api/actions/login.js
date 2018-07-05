@@ -17,12 +17,9 @@ export const login = async (req, res) => {
     const result = await loginService(userData);
 
     if (result.type == 'error') 
-      res.status(400).send(
-        {error: [{status:400, message: result.msg, code: 10}]}
-      );
+      res.status(400).send({error: [{status:400, message: result.msg, code: 10}]});
     else 
-      res.send(result.data);
-
+      res.send(result);
 
 };
 
