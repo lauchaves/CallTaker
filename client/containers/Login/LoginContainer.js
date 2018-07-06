@@ -1,35 +1,42 @@
 import React, { Component } from 'react';
-import LoginForm from './../../components/LoginForm'
-import { loginReducer } from '../../redux/loginReducer';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import LoginForm from '../../components/LoginForm'
+import { login } from '../../redux/modules/loginReducer';
+import { userModel } from '../../models/user';
 
-
-const loginStyle = { width: '100%', margin: 'auto', position: 'fixed', top: '20%'};
-const modalStyle = { marginTop: '100px' };
-const titleStyle = { paddingBottom: '20px' };
-const containerStyle = { textAlign:'center', position: 'relative', margin: '0 auto 100px', maxWidth:'400px',
-padding: '10px 35px 35px', boxShadow: '0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24)', zIndex: '1' };
-
-
+@connect(
+  (state, props) => ({
+    user: state.user,
+    
+  }),
+  dispatch =>
+    bindActionCreators(
+      {
+        login,
+      },
+      dispatch,
+    ),
+)
 class Login extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-          email: '',
-          password: '',
+          model: userModel
         };
     }
 
 
-    submit = values => {
-      loginReducer(this.state, values);
-      
+    handleSubmit = async () => {
+      await login(this.state.model);
+
     };
 
   
    
     render() {
-      return <LoginForm onSubmit={this.submit} />;
+      return <LoginForm model={this.state.model}  handleSubmit={this.handleSubmit} />;
     }
   }
 

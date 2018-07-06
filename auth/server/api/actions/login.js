@@ -20,6 +20,5 @@ export const login = async (req, res) => {
       res.send({auth: false, error: {status:400, message: result.msg, code: 10}});
     else 
       res.send({ auth: true, token: result });
-
 };
 

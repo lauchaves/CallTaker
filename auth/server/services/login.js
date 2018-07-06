@@ -14,7 +14,7 @@ export const loginService = async userData => {
         const dbUserId = result.user_id;
         const dbUsername = result.user_name;
 
-        const token = jwt.sign({email: dbEmail, userId: dbUserId, username: dbUsername}, secret);
+        const token = jwt.sign({email: dbEmail, userId: dbUserId, username: dbUsername}, secret, {expiresIn: '15m'});
         return token;
     };
 
