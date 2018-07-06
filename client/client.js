@@ -9,8 +9,7 @@ import login from './redux/modules/loginReducer';
 import Root from './components/Root';
 import { browserHistory } from 'react-router';
 
-//const reducers = {form: formReducer};
-const reducers = combineReducers({login, formReducer});
+const reducers = combineReducers({login, form: formReducer});
 const store = createStore(reducers);
 
 ReactDOM.render(
