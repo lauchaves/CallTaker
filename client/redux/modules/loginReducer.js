@@ -25,6 +25,7 @@ export const login = model => async dispatch => {
   
     const result = await makePost(constants.LOGIN_URL, payload);
     const finalRes = result.text;
+    
     console.log(finalRes);
 
     if (finalRes.auth == false) {
