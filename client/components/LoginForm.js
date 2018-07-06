@@ -33,7 +33,7 @@ class LoginForm extends Component {
               onChange={this.setValue}
             />
             <Field
-             value= {model.email}
+             value= {model.password}
               name="password"
               component="input"
               type="password"
