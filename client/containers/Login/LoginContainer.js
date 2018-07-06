@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LoginForm from './../../components/LoginForm'
-import request from 'superagent';
+import { loginReducer } from '../../redux/loginReducer';
 
 
 const loginStyle = { width: '100%', margin: 'auto', position: 'fixed', top: '20%'};
@@ -19,22 +19,13 @@ class Login extends Component {
           password: '',
         };
     }
- 
-    submit = async values => {
-      console.log(values);
-      const email1 = values.username;
-      const password1 = values.password;
 
-      const result = await request
-      .post('http://localhost:4000/login')
-      .type('form')
-      .send({email: email1, password: password1})
-      .accept('application/json');
 
-      console.log(result);
-    
+    submit = values => {
+      loginReducer(this.state, values);
       
     };
+
   
    
     render() {

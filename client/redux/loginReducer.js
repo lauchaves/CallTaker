@@ -1,43 +1,43 @@
 import * as constants from './constants';
 import request from 'superagent';
+import jwt from 'jsonwebtoken'; 
+import { secret } from '../../auth/server/services/config';
 
-/*
-export const loginReducer = (state = {}, action ) =>  {
-    switch(action.type) {
-      case 'SET_LOGGED_USER':
-        return action.payload;
-      case 'LOGOUT':
-        return {};
-      default:
-        return state;
+export const loginReducer = async (state = {}, values ) =>  {
+    const emailValue = values.username;
+    const passwordValue = values.password;
+
+    if (!emailValue || !passwordValue) {
+        alert( 'You need a username and password');
+        return;
+      };
+
+    const setToken = token => { sessionStorage.setItem('token',token) };
+
+    const logout = () => { sessionStorage.removeItem('token') };
+    
+    const getToken = () => { return sessionStorage.getItem('token') };
+
+    const getProfile = token => { 
+        const decoded= jwt.verify(getToken(),secret);
+        console.log(decoded);
+    
     }
+
+    const result = await request
+    .post(constants.API_URL+'login')
+    .type('form')
+    .send({email: emailValue, password: passwordValue})
+    .accept('application/json');
+
+    if (finalRes.auth == false) {
+        alert(finalRes.error.message);
+    }
+
+    setToken(finalRes.token);
+    getProfile(finalRes.token);
+
+    
+
+
   };
-
-*/
-
- export const auth = async values => {
-     const email = values.username;
-     const password = values.password;
-     // const result = await .... post
-     console.log(result);
-   
-
-    }
-
-      
-
-/*             dispatch({type: types.ADD_RECIPE});
-            axios.post(constants.API_URL + 'recipes', recipe).then(resp => {
-                dispatch({
-                    type: types.ADD_RECIPE_SUCCESS,
-                    payload: resp
-                });
-                dispatch(fetchRecipes());
-            }).catch(err => {
-                dispatch({
-                    type: types.ADD_RECIPE_REJECTED,
-                    error: err
-                });
-            });
-        }; 
-*/
