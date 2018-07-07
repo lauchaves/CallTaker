@@ -11,12 +11,7 @@ import { userModel } from '../../models/user';
     
   }),
   dispatch =>
-    bindActionCreators(
-      {
-        login,
-      },
-      dispatch,
-    ),
+    bindActionCreators({login},dispatch)
 )
 class Login extends Component {
 
@@ -30,6 +25,7 @@ class Login extends Component {
 
     handleSubmit = async () => {
       console.log('loginCOntainer');
+      console.log(this.state.model);
       await login(this.state.model);
 
     };

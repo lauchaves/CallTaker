@@ -18,8 +18,8 @@ export default (state = {}, action = {}) => {
   }
 };
 
-export const login = (model,values) => async dispatch => {
-  console.log(values);
+export const login = model => async dispatch => {
+  console.log(model);
     
     dispatch({type: LOGIN});
     const payload = {'email':model.email, 'password':model.password};
