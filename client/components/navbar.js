@@ -1,6 +1,13 @@
 import React from 'react';
 import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { logout } from '../redux/helpers/sessionhelper';
+import { browserHistory } from 'react-router'
 
+
+const handleClick = () => {
+  logout();
+  browserHistory.replace('/');
+}
 
 export const NavBar = () => ( // The variable should be a return function...
   <Navbar inverse collapseOnSelect>
@@ -16,7 +23,7 @@ export const NavBar = () => ( // The variable should be a return function...
         <NavItem eventKey={2} >Resoures</NavItem>
       </Nav>
       <Nav pullRight>
-        <NavItem eventKey={1} href="#">Log out</NavItem>
+        <NavItem eventKey={1} href="#" onClick={handleClick}>Log out</NavItem>
       </Nav>
     </Navbar.Collapse>
   </Navbar>

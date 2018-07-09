@@ -11,10 +11,10 @@ Call Taker &amp; Dispatch System.
 
 Client: 
 
-* npm start 
+* `npm start `
 
 Server: 
 
-* cd calltaker/auth/server/
+* `cd calltaker/auth/server/`
 
-* babel-node server.js
+* `babel-node server.js`

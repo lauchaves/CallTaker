@@ -4,10 +4,12 @@ import { bindActionCreators } from 'redux';
 import LoginForm from '../../components/LoginForm'
 import { login } from '../../redux/modules/loginReducer';
 import { userModel } from '../../models/user';
+import { browserHistory } from 'react-router'
 
 @connect(
   (state, props) => ({
-    user: state.user,
+    loginSuccess: state.login.loginSuccess,
+    response: state.login.response
     
   }),
   dispatch =>
@@ -22,16 +24,19 @@ class Login extends Component {
         };
     }
 
-    handleSubmit = async () =>  {
-      console.log('loginCOntainer');
-      console.log(this.state.model);
-      return await login(this.state.model);
+    componentWillReceiveProps(nextProps){
+      if (nextProps.loginSuccess == true ) 
+        browserHistory.push('/home');
+      return;
+    }
 
+    handleSubmit = async () =>  {
+      await this.props.login(this.state.model);
     };
    
     render() {
       return <LoginForm model={this.state.model}  handleSubmit={this.handleSubmit} />;
-    }
-  }
+    };
+  };
 
   export default Login;

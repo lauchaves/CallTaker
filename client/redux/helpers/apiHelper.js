@@ -5,5 +5,5 @@ export const makePost = async (url, payload) =>
     request
     .post(`${constants.AUTH_URL}${url}`)
     .type('form')
-    .send({payload})
+    .send(payload)
     .accept('application/json');

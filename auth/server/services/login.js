@@ -9,13 +9,6 @@ export const loginService = async userData => {
         const error = {type: 'error', msg: 'Cannot find user/password'};
         return error;
     }
-    else {
-        const dbEmail = result.email
-        const dbUserId = result.user_id;
-        const dbUsername = result.user_name;
-
-        const token = jwt.sign({email: dbEmail, userId: dbUserId, username: dbUsername}, secret, {expiresIn: '15m'});
-        return token;
-    };
-
+    const token = jwt.sign({email: result.email, userId: result.user_id, username: result.user_name}, secret, {expiresIn: '2m'});
+    return token;
 };
