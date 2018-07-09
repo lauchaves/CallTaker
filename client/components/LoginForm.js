@@ -23,7 +23,7 @@ class LoginForm extends Component {
     return (
       <div className={ cf("loginStyle") }>
         <div className = { cf("containerStyle") }>
-          <form onSubmit={ async (event)=> {event.preventDefault();  await handleSubmit();}}>
+          <form href="#" onSubmit={ async (event)=> {event.preventDefault();  await handleSubmit();}}>
             <Field
               value= {model.email}
               name="email"

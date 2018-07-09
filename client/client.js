@@ -15,7 +15,18 @@ import HomePage from './containers/home/HomePage';
 const reducers = combineReducers({login, form: formReducer});
 //const store = createStore(reducers);
 
-const store = createStore(reducers, compose(applyMiddleware(thunk)));
+const dispatcher = () => ({ getState, dispatch }) => next => action => {
+  if (typeof action === 'function') {
+    return action(dispatch, getState);
+  }
+  const result = next(action);
+  return result;
+}; ;
+
+const storeCreator = compose(applyMiddleware(dispatcher));
+const create = storeCreator(createStore);
+
+const store = create(reducers);
 
 /* 
   <HomePage />,

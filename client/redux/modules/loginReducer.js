@@ -12,14 +12,14 @@ export default (state = {}, action = {}) => {
     case LOGIN_SUCCESS:
       return { success: true, data: action.result};
     case LOGIN__FAIL:
-      return { error: action.result};
+      return { success: false, error: action.result};
     default:
       return state;
   }
 };
 
 export const login = model => async dispatch => {
-  console.log(model);
+    console.log(model);
     
     dispatch({type: LOGIN});
     const payload = {'email':model.email, 'password':model.password};
@@ -40,7 +40,5 @@ export const login = model => async dispatch => {
       const data = finalRes.token;
       dispatch({type: LOGIN_SUCCESS, result: data });
     };
-
-
 
   };

@@ -22,15 +22,12 @@ class Login extends Component {
         };
     }
 
-
-    handleSubmit = async () => {
+    handleSubmit = async () =>  {
       console.log('loginCOntainer');
       console.log(this.state.model);
-      await login(this.state.model);
+      return await login(this.state.model);
 
     };
-
-  
    
     render() {
       return <LoginForm model={this.state.model}  handleSubmit={this.handleSubmit} />;
