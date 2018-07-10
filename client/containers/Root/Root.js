@@ -8,7 +8,6 @@ import Home from '../Home/Home';
 
     verifyToken = () => { 
       if (getToken()==null) {
-        console.log(getToken());
         return;
       }
         
@@ -34,9 +33,12 @@ import Home from '../Home/Home';
           this.state = { routes };
     };
 
+    
+
     render() {
-        const { history } = this.props;
-        const { routes } = this.state;
+      const { history } = this.props;
+      const { routes } = this.state;
+
       return (
         <Router history={ history } routes={ routes } />
         

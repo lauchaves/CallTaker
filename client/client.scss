@@ -1,4 +1,5 @@
 $mainColor:  #4CAF50;
+$boxShadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 
 body {
   margin: 0;
@@ -6,17 +7,7 @@ body {
   font-family: sans-serif;
 }
 
-.containerStyle {
-  text-align: center;
-  position: relative;
-  margin: 0 auto 100px;
-  max-width:400px;
-  padding: 10px 35px 35px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  z-index: 1 ;
-}
-
-.loginStyle {
+.centerContainer {
   width: 100%;
   margin: auto;
   position: fixed;
@@ -44,4 +35,46 @@ button {
 
 button:hover {
   opacity: 0.8;
+}
+
+.modalStyle {
+  margin-top: '100px';
+}
+
+.containerStyle {
+  text-align: center;
+  position: relative;
+  margin: 0 auto 100px;
+  max-width:400px;
+  padding: 10px 35px 35px;
+  box-shadow: $boxShadow;
+  z-index: 1 ;
+}
+
+.div-table {
+  display: table;
+  margin: 0 auto 100px;
+  padding: 30px 35px 35px;
+  box-shadow: $boxShadow;
+  width: auto;         
+  background-color: #eee;         
+  border: 1px $mainColor;         
+  border-spacing: 5px; /* cellspacing:poor IE support for  this */
+  text-align: center;
+}
+.div-table-row {
+  display: table-row;
+  width: auto;
+  clear: both;
+}
+.div-table-col {
+  float: left; /* fix for  buggy browsers */
+  display: table-column;         
+  width: 200px;         
+  background-color: #ccc;  
+}
+
+.table-header {
+  font-weight: bold;
+  text-align: center;
 }

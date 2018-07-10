@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form'
-import { cf } from './../client.scss';
+import { cf } from '../../client.scss';
 
 class LoginForm extends Component {
   
@@ -21,7 +21,7 @@ class LoginForm extends Component {
     const { handleSubmit } = this.props;
     const model = this.state.model;
     return (
-      <div className={ cf("loginStyle") }>
+      <div className={ cf("centerContainer") }>
         <div className = { cf("containerStyle") }>
           <form href="#" onSubmit={ async (event)=> {event.preventDefault();  await handleSubmit();}}>
             <Field

@@ -23,7 +23,6 @@ export default (state = {}, action = {}) => {
     };
 
     case LOGIN__FAIL:
-    console.log(action.result);
       return { loginSuccess: false, response: action.result};
     default:
       return state;

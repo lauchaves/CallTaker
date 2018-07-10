@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import { userModel } from '../../models/user';
-import { NavBar } from '../../components/navbar';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import { cf } from '../../client.scss';
+import { Table } from '../../components/Table/Table';
+import { Header } from '../../components/Header/Header';
 
-
-class HomePage extends Component {
+class Home extends Component {
   
     constructor(props) {
       super(props);
@@ -21,35 +15,17 @@ class HomePage extends Component {
   
     render() {
       const model = this.state.model;
+      const testList = [{ Type: "Robbery", Description: "Robbery at bank" }, { Type: "Fire", Description: "Fire at Park" } ];
+
       return (
         <div>
-          <NavBar/>
-          <Paper>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell>Dessert (100g serving)</TableCell>
-                  <TableCell numeric>Calories</TableCell>
-                  <TableCell numeric>Fat (g)</TableCell>
-                  <TableCell numeric>Carbs (g)</TableCell>
-                  <TableCell numeric>Protein (g)</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell component="th" scope="row">qwer</TableCell>
-                  <TableCell numeric>1234</TableCell>
-                  <TableCell numeric>tyui</TableCell>
-                  <TableCell numeric>jjjj</TableCell>
-                  <TableCell numeric>llll</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </Paper>
+          <Header/>
+          <br/>
+          <Table list={testList} />
         </div>
       );
     
     }
   }
 
-  export default HomePage;
+  export default Home;

@@ -1,15 +1,14 @@
 import React from 'react';
 import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-import { logout } from '../redux/helpers/sessionhelper';
+import { logout } from '../../redux/helpers/sessionhelper';
 import { browserHistory } from 'react-router'
-
 
 const handleClick = () => {
   logout();
   browserHistory.replace('/');
 }
 
-export const NavBar = () => ( // The variable should be a return function...
+export const Header = () => ( // The variable should be a return function...
   <Navbar inverse collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>

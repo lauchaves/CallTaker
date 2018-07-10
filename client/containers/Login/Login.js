@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import LoginForm from '../../components/LoginForm'
+import LoginForm from '../../components/LoginForm/LoginForm'
 import { login } from '../../redux/modules/loginReducer';
 import { userModel } from '../../models/user';
 import { browserHistory } from 'react-router'
