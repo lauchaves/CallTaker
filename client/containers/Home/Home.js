@@ -8,15 +8,12 @@ class Home extends Component {
   
     constructor(props) {
       super(props);
-      this.state = {
-        model: props.model
-      };
+      this.state = {};
     }
   
     render() {
-      const model = this.state.model;
       const testList = [{ Type: "Robbery", Description: "Robbery at bank" }, { Type: "Fire", Description: "Fire at Park" } ];
-
+      
       return (
         <div>
           <Header/>
