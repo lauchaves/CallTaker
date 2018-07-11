@@ -1,0 +1,2 @@
+
+export { emergency } from './emergency';

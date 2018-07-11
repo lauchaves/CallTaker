@@ -7,6 +7,8 @@ import login from './redux/modules/loginReducer';
 import Root from './containers/Root/Root';
 import { browserHistory } from 'react-router';
 
+import { emergencyStore } from './stores/classes/emergency';
+ 
 const reducers = combineReducers({login, form: formReducer});
 
 const dispatcher = () => ({ getState, dispatch }) => next => action => {

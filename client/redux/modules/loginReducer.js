@@ -1,5 +1,5 @@
-import { makePost } from '../helpers/apiHelper';
-import * as constants from './constants';
+import { makePost } from '../../apiHelper/apiHelper';
+import * as constants from '../../constants';
 import { getToken, setToken } from '../helpers/sessionhelper';
 
 
@@ -30,9 +30,10 @@ export default (state = {}, action = {}) => {
 };
 
 export const login = model => async dispatch => {
+    console.log(`${constants.AUTH_URL}${constants.LOGIN_URL}`);
     
     dispatch({type: LOGIN});
-    const result = await makePost(constants.LOGIN_URL, model);
+    const result = await makePost(`${constants.AUTH_URL}${constants.LOGIN_URL}`, model);
     const finalRes = JSON.parse(result.text);
     
     if (finalRes.auth == false) {

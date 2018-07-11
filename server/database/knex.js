@@ -1,4 +1,4 @@
-import knexBuilder from '../../../../../.cache/typescript/2.9/node_modules/@types/knex';
+import knexBuilder from 'knex';
 
 export const knex= new knexBuilder(
 {
