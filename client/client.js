@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import { Provider } from 'mobx-react';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import {reducer as formReducer} from 'redux-form';
 import login from './redux/modules/loginReducer';
 import Root from './containers/Root/Root';
 import { browserHistory } from 'react-router';
 
-import mobxStores from './stores/index'; 
- 
+import {mobxStore} from './stores/index'; 
+
+console.log(mobxStore); // this returns -> {authStore: Auth, emergencyStore: Emergency}
 
 const reducers = combineReducers({login, form: formReducer});
 
@@ -25,8 +26,8 @@ const create = storeCreator(createStore);
 const reduxStore = create(reducers);
 
 ReactDOM.render(
-<Provider store={{...reduxStore, ...mobxStores}}>
-        <Root key={`key-${Date.now()}`} store={{...reduxStore, ...mobxStores}} history={browserHistory} />
+<Provider store={{...reduxStore, ...mobxStore}}>
+        <Root key={`key-${Date.now()}`} store={{...reduxStore, ...mobxStore}} history={browserHistory} />
       </Provider>,
   document.getElementById('root')
 );

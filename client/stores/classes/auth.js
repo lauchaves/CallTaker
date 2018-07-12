@@ -16,5 +16,5 @@ class Auth {
 
 };
 
-export const authStore = new Auth();
+export default new Auth();
 

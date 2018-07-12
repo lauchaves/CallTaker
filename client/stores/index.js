@@ -1,9 +1,7 @@
-export  { authStore }  from './classes/auth';
-export  { emergencyStore } from './classes/emergency';
+import  authStore  from './classes/auth';
+import  emergencyStore from './classes/emergency';
 
-/*
-export const stores = {
+export const mobxStore = {
     authStore,
-    emergencyStore
-}
-*/
+    emergencyStore,
+};

@@ -13,4 +13,4 @@ class Emergency {
 
 };
 
-export const emergencyStore = new Emergency();
+export default new Emergency();
