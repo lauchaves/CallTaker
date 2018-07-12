@@ -23,4 +23,4 @@ class Emergency {
     // emergency = {type: '', description: ''}
 };
 
-export const emergencyStore = new Emergency();
+//export const emergencyStore = new Emergency();
