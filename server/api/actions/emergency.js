@@ -1,12 +1,13 @@
-import { emergencyService } from './../../services/emergency'
+import { getEmergencies } from './../../services/emergency'
 import { action } from 'mobx';
 
 export const emergency  = async (req, res) => {
-
-    const result = await emergencyService();
+    console.log('actions emergency');
+    const result = await getEmergencies();
 
     console.log('action', result);
     if (!result || !result.length) 
+        res.send({error: "No Emergencies"}); 
 
     res.send(result);
 

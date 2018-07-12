@@ -3,6 +3,9 @@ import Login from '../Login/Login';
 import { Router, browserHistory } from 'react-router'
 import { getToken } from '../../redux/helpers/sessionhelper';
 import Home from '../Home/Home';
+import  mobxStore  from '../../stores'; 
+import { Provider } from 'mobx-react';
+
 
   class Root extends Component {
 
@@ -26,7 +29,8 @@ import Home from '../Home/Home';
               },
               {
                 path: '/home',
-                component: Home,
+                component: () => <Provider store ={mobxStore}> <Home/> </Provider>,
+                
               },
             ],
           };

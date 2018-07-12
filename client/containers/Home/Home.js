@@ -11,8 +11,8 @@ import constants from '../../constants';
 // alimentar el store con la respuesta del api
 // 
 
-@inject("emergencyStore")
 @observer
+@inject("emergency")
 class Home extends Component {
   
     constructor(props) {

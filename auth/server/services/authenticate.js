@@ -3,6 +3,7 @@ import { secret } from './config';
 
 export const verifyToken = (req, res, next) => {
   var token = req.headers['x-access-token'];
+  console.log(req.headers);
 
   if (!token)
     return res.status(401).send({ auth: false, message: 'No token provided.' });
