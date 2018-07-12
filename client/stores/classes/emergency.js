@@ -11,16 +11,6 @@ class Emergency {
         return this.emergenciesList;
     }
 
-    // action lleva la logica bd 
-
-    /*
-    const emergenciesDb = await getEmergencies(); // el resultado del query// emergency = {type: '', description: ''}
-
-    this.emergenciesList = emergenciesDb; 
-    */
-
-
-    // emergency = {type: '', description: ''}
 };
 
-//export const emergencyStore = new Emergency();
+export const emergencyStore = new Emergency();

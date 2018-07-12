@@ -12,9 +12,7 @@ class Auth {
 
     @computed get isAuthenticated () {
         return !!this.token;
-
     }
-
 
 };
 

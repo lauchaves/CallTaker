@@ -1,8 +1,9 @@
-import authStore from './classes/auth';
-import emergencyStore from './classes/emergency';
+export  { authStore }  from './classes/auth';
+export  { emergencyStore } from './classes/emergency';
 
-
+/*
 export const stores = {
     authStore,
-    emergencyStore,
-};
+    emergencyStore
+}
+*/

@@ -7,9 +7,9 @@ import login from './redux/modules/loginReducer';
 import Root from './containers/Root/Root';
 import { browserHistory } from 'react-router';
 
-import stores from './stores/index';
-
+import mobxStores from './stores/index'; 
  
+
 const reducers = combineReducers({login, form: formReducer});
 
 const dispatcher = () => ({ getState, dispatch }) => next => action => {
@@ -22,11 +22,11 @@ const dispatcher = () => ({ getState, dispatch }) => next => action => {
 const storeCreator = compose(applyMiddleware(dispatcher()));
 const create = storeCreator(createStore);
 
-const store = create(reducers, ...stores);
+const reduxStore = create(reducers);
 
 ReactDOM.render(
-<Provider store={store}>
-        <Root key={`key-${Date.now()}`} store={store} history={browserHistory} />
+<Provider store={{...reduxStore, ...mobxStores}}>
+        <Root key={`key-${Date.now()}`} store={{...reduxStore, ...mobxStores}} history={browserHistory} />
       </Provider>,
   document.getElementById('root')
 );
