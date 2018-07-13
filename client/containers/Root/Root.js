@@ -4,7 +4,7 @@ import { Router, browserHistory } from 'react-router'
 import { getToken } from '../../redux/helpers/sessionhelper';
 import Home from '../Home/Home';
 import  mobxStore  from '../../stores'; 
-import { Provider } from 'mobx-react';
+import { Provider } from 'react-redux';
 
 
   class Root extends Component {
@@ -29,7 +29,7 @@ import { Provider } from 'mobx-react';
               },
               {
                 path: '/home',
-                component: () => <Provider store ={mobxStore}> <Home/> </Provider>,
+                component: Home,
                 
               },
             ],
@@ -40,11 +40,13 @@ import { Provider } from 'mobx-react';
     
 
     render() {
-      const { history } = this.props;
+      const { history, store } = this.props;
       const { routes } = this.state;
 
       return (
-        <Router history={ history } routes={ routes } />
+        <Provider store={store} >
+          <Router history={ history } routes={ routes } />
+        </Provider>
         
       );
     };

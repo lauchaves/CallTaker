@@ -1,3 +1,7 @@
-export  {auth}  from './classes/auth';
-export  {emergency} from './classes/emergency';
+import   auth  from './classes/auth';
+import  emergency from './classes/emergency';
 
+export const store = {
+    auth,
+    emergency,
+}

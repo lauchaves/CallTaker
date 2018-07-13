@@ -1,4 +1,6 @@
-import {observable, computed, reaction } from 'mobx';
+import {observable, computed, reaction, action } from 'mobx';
+import { makeGet } from '../../apiHelper/apiHelper';
+import * as constants from '../../constants';
 
 class Emergency {
     @observable emergenciesList;
@@ -11,6 +13,16 @@ class Emergency {
         return this.emergenciesList;
     }
 
+    @action getEmergencies = async () => {
+        console.log('emergency store');
+        console.log('route--',`${constants.SERVER_URL}${constants.EMERGENCY_URL}`);
+        const response = await makeGet(`${constants.SERVER_URL}${constants.EMERGENCY_URL}`);
+        const finalRes = JSON.parse(response.text);
+        console.log(finalRes);
+        this.emergenciesList = finalRes;
+        
+    };
+
 };
 
-export const emergency = new Emergency();
+export default new Emergency();
