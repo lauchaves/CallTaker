@@ -1,6 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { setupApis } from './api/api';
+import { mockQueueMessages } from './workers/emitter';
+import { receiveMessages } from './workers/consumer';
 
 let app = express();
 
@@ -18,6 +20,12 @@ app.use(function(req, res, next) {
 
 setupApis(app);
 
-app.listen(5000, () => {
+
+
+
+app.listen(5000, async () => {
+    const messagesList = ["Drug overdose","Crime","Building Fire","Heart Attack","Drowning"];
+    await mockQueueMessages(messagesList);
+    await receiveMessages();
     console.log('server started - 5000');
 });

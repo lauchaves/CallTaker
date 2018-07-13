@@ -20,22 +20,30 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          model: userModel
+          model: userModel,
+          isLogged: true,
         };
     }
 
     componentWillReceiveProps(nextProps){
-      if (nextProps.loginSuccess == true ) 
+      if (nextProps.loginSuccess == true ) {
         browserHistory.push('/home');
+        return;
+      }
+      console.log('before set state');
+      this.setState({ isLogged: !this.state.isLogged });
+      console.log('after',this.state.isLogged);
       return;
     }
 
+
     handleSubmit = async () =>  {
       await this.props.login(this.state.model);
+
     };
    
     render() {
-      return <LoginForm model={this.state.model}  handleSubmit={this.handleSubmit} />;
+      return <LoginForm isLogged={this.state.isLogged} model={this.state.model}  handleSubmit={this.handleSubmit} />;
     };
   };
 

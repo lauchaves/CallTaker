@@ -11,50 +11,48 @@ class LoginForm extends Component {
     };
   }
 
- 
   setValue = (event, newValue, previousValue, name) => {
     console.log(newValue);
     this.state.model[name] = newValue;
    };
 
   render() {
-    const { handleSubmit } = this.props;
-    const model = this.state.model;
-    return (
-      <div className={ cf("centerContainer") }>
-        <div className = { cf("containerStyle") }>
-          <form href="#" onSubmit={ async (event)=> {event.preventDefault();  await handleSubmit();}}>
-            <Field
-              value= {model.email}
-              name="email"
-              component="input"
-              type="text"
-              placeholder="Username"
-              onChange={this.setValue}
-            />
-            <Field
-             value= {model.password}
-              name="password"
-              component="input"
-              type="password"
-              placeholder="Password"
-              onChange={this.setValue}
-            />
-            <button type="submit" label="submit">Submit</button>
-          </form>
+      const { handleSubmit } = this.props;
+      const model = this.state.model;
+      const notLogged = <label> Unable to authenticate. Try Again</label>;
+      console.log(this.props.isLogged);
+      const error = this.props.isLogged ? null : <label> Unable to authenticate. Try Again</label> ;
+
+
+      return (
+        <div className={ cf("centerContainer") }>
+          <div className = { cf("containerStyle") }>
+            <form href="#" onSubmit={ async (event)=> {event.preventDefault();  await handleSubmit();}}>
+              <Field
+                value= {model.email}
+                name="email"
+                component="input"
+                type="text"
+                placeholder="Username"
+                onChange={this.setValue}
+              />
+              <Field
+              value= {model.password}
+                name="password"
+                component="input"
+                type="password"
+                placeholder="Password"
+                onChange={this.setValue}
+              />
+              {error}
+              <button type="submit" label="submit">Submit</button>
+            </form>
+          </div>
         </div>
-      </div>
-    );
-  
+      );
+
   }
 }
   
 
  export default reduxForm({ form: 'login' })(LoginForm);
-
-    //<ButLaton bsStyle="primary" onClick={ this.saveReport }>Save this Report</Button>
-    /*const loginFail = this.props. ? (
-    <label for="favorite-animal">Cannot find user. Try Again</label
-    
-   ) : null;
-   */

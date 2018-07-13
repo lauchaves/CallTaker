@@ -10,8 +10,8 @@ export const getEmergencies = async () => {
                (knex.raw(`${dispatch_emergencyTable}.dispatch_info->>'userId' AS userId , 
                           ${dispatch_emergencyTable}.dispatch_info->>'timeStamp' AS timeStamp` )))
     .from(`${emergencyTable}`)
-    .innerJoin(`${dispatch_emergencyTable}`, `${emergencyTable}.emergency_id`, '=', `${dispatch_emergencyTable}.emergency_id`);
+    .leftJoin(`${dispatch_emergencyTable}`, `${emergencyTable}.emergency_id`, '=', `${dispatch_emergencyTable}.emergency_id`);
 
-    return queryResult.length ? queryResult : null;
+    return queryResult.length ? queryResult : [];
 
 };

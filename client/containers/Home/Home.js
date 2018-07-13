@@ -7,8 +7,9 @@ import { inject, observer } from 'mobx-react';
 // alimentar el store con la respuesta del api
 // 
 
-@observer
+
 @inject("emergency", "auth")
+@observer
 class Home extends Component {
 
     constructor(props) {
