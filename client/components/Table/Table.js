@@ -3,6 +3,10 @@ import { Row } from './Row';
 import { cf } from '../../client.scss';
 
 export const Table = ({list}) => {
+    console.log("table");
+    console.log(list);
+    console.log(list.length);
+    console.log(!list);
 
     if (!list || !list.length ) return <div>No items to display</div>;
 

@@ -8,9 +8,8 @@ import Root from './containers/Root/Root';
 import { browserHistory } from 'react-router';
 
 import  {store as mobxStore}  from './stores/index'; 
-console.log(mobxStore);
 
-sessionStorage.clear();
+//sessionStorage.clear();
 
 
 //console.log(mobxStore); // this returns -> {authStore: Auth, emergencyStore: Emergency}

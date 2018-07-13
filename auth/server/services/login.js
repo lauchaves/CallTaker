@@ -9,6 +9,6 @@ export const loginService = async userData => {
         const error = {type: 'error', msg: 'Cannot find user/password'};
         return error;
     }
-    const token = jwt.sign({email: result.email, userId: result.user_id, username: result.user_name}, secret, {expiresIn: '2m'});
+    const token = jwt.sign({email: result.email, userId: result.user_id, username: result.user_name}, secret, {expiresIn: '5m'});
     return token;
 };

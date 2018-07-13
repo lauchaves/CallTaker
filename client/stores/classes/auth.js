@@ -1,5 +1,6 @@
-import {observable, computed, reaction } from 'mobx';
+import {observable, computed, reaction, action } from 'mobx';
 import { verifyToken } from '../../../auth/server/services/authenticate';
+import { getToken } from '../../redux/helpers/sessionhelper';
 
 
 class Auth {
@@ -12,6 +13,10 @@ class Auth {
 
     @computed get isAuthenticated () {
         return !!this.token;
+    }
+
+    @action async hydrate (token) { 
+        this.token = token;
     }
 
 };

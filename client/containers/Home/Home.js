@@ -8,19 +8,20 @@ import { inject, observer } from 'mobx-react';
 // 
 
 @observer
-@inject("emergency")
+@inject("emergency", "auth")
 class Home extends Component {
-  
+
     constructor(props) {
       super(props);
-      
     }
 
-    async componentWillMount() {
-      await this.props.emergency.getEmergencies();
-    }
+    async componentWillMount () {
+     await this.props.emergency.getEmergencies();
+      //console.log("response",this.props.emergency.emergencies);
+    };
 
     render() {
+      console.log("response",this.props.emergency.emergencies);
       const testList = [{ Type: "Robbery", Description: "Robbery at bank" }, { Type: "Fire", Description: "Fire at Park" } ];
       return (
         <div>

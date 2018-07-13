@@ -2,7 +2,7 @@ import amqp from 'amqplib/callback_api';
 
 amqp.connect('amqp://localhost', (err, conn) => {
   conn.createChannel( (err, ch) => {
-    const q = 'hello';
+    const q = 'Emergencies';
 
     ch.assertQueue(q, {durable: false});
     console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q);
