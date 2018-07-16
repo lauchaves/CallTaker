@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import { setupApis } from './api/api';
 import { mockQueueMessages } from './workers/emitter';
 import { receiveMessages } from './workers/consumer';
+import * as constants from './workers/constants';
 
 let app = express();
 
@@ -25,10 +26,12 @@ setupApis(app);
 
 app.listen(5000, async () => {
     console.log('server started - 5000');
-    
-    const messagesList = [{type: "Phone Call", description: "Drug overdose"},{type: "Text msg", description: "Crime"},
-    {type: "Phone Call", description: "Building Fire"},{type: "Phone Call", description: "Heart Attack"},
-    {type: "Text msg", description:"Drowning"}];
+    const { emergencyType } = constants;
+
+    const messagesList = [
+        {type: emergencyType.PHONE , description: "Drug overdose"},{type: emergencyType.SMS, description: "Crime"},
+        {type: emergencyType.PHONE, description: "Building Fire"},{type: emergencyType.PHONE, description: "Heart Attack"},
+    {type: emergencyType.SMS, description:"Drowning"}];
 
     await mockQueueMessages(messagesList);
     await receiveMessages();
