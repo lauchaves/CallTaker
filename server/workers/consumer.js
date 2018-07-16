@@ -9,19 +9,20 @@ export const receiveMessages = async () => {
   channel.assertExchange(constants.queueName, 'topic', {durable: true});
   
   try {
-    await channel.assertQueue('queue', {exclusive: true}) ;
+    const queue= await channel.assertQueue('queue', {exclusive: true}) ;
+    channel.prefetch(1);
 
     await channel.bindQueue('queue', constants.queueName, 'topic');
-
+    
     console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", 'queue');
 
-    channel.consume('queue', msg => console.log(" [x] %s", msg.content.toString(),{noAck: true}));
+     channel.consume('queue',  msg => { 
+      console.log(" [x] %s", msg.content.toString());
+  
+      }, {noAck: true});
 
   }catch(err){
     console.log(err);
   }
 
-  
 };
-
-//tell the exchange to send messages to our queue. That relationship between exchange and a queue is called a binding.
