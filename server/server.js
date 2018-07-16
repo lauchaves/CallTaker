@@ -25,7 +25,11 @@ setupApis(app);
 
 app.listen(5000, async () => {
     console.log('server started - 5000');
-    const messagesList = ["Drug overdose","Crime","Building Fire","Heart Attack","Drowning"];
+    
+    const messagesList = [{type: "Phone Call", description: "Drug overdose"},{type: "Text msg", description: "Crime"},
+    {type: "Phone Call", description: "Building Fire"},{type: "Phone Call", description: "Heart Attack"},
+    {type: "Text msg", description:"Drowning"}];
+
     await mockQueueMessages(messagesList);
     await receiveMessages();
 });

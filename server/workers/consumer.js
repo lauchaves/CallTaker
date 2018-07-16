@@ -1,7 +1,7 @@
 import amqp from 'amqplib/callback_api';
 import { connectToQueue } from './queue';
 import * as constants from './constants';
-
+import { postEmergencies } from '../services/emergency';
 
 
 export const receiveMessages = async () => {
@@ -16,9 +16,10 @@ export const receiveMessages = async () => {
     
     console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", 'queue');
 
-     channel.consume('queue',  msg => { 
-      console.log(" [x] %s", msg.content.toString());
-  
+    channel.consume('queue',  msg => { 
+      console.log(" [x] %s", msg.content.toString()); 
+      postEmergencies(JSON.parse(msg.content.toString()));
+
       }, {noAck: true});
 
   }catch(err){
@@ -26,3 +27,5 @@ export const receiveMessages = async () => {
   }
 
 };
+
+//parse msg

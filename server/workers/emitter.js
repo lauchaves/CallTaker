@@ -10,8 +10,9 @@ export const mockQueueMessages = async messages => {
     
     await bluebird.mapSeries(messages, 
         async msg => { await setTimeout( 
-            async () => await channel.publish(constants.queueName,'topic', new Buffer(msg), {persistent: true}), 2000
+            async () => await channel.publish(constants.queueName,'topic', new Buffer(JSON.stringify(msg)), {persistent: true}), 2000
         )}
     );
 };
 
+//stringify buffer
