@@ -1,11 +1,14 @@
 import express from 'express';
+import http from 'http';
 import bodyParser from 'body-parser';
 import { setupApis } from './api/api';
 import { mockQueueMessages } from './workers/emitter';
 import { receiveMessages } from './workers/consumer';
 import * as constants from './workers/constants';
+import { createSocketServer } from './socketIO';
 
 let app = express();
+
 
 app.use(bodyParser.json());
 
@@ -20,9 +23,7 @@ app.use(function(req, res, next) {
 });
 
 setupApis(app);
-
-
-
+createSocketServer(app);
 
 app.listen(5000, async () => {
     console.log('server started - 5000');

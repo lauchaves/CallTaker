@@ -36,6 +36,8 @@
     "redux-thunk": "^2.3.0",
     "sass": "^1.8.0",
     "sass-loader": "^7.0.3",
+    "socket.io": "^2.1.1",
+    "socket.io-client": "^2.1.1",
     "style-loader": "^0.21.0",
     "superagent": "^3.8.3",
     "uuid": "^3.3.2",

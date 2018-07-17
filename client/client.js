@@ -6,8 +6,8 @@ import {reducer as formReducer} from 'redux-form';
 import login from './redux/modules/loginReducer';
 import Root from './containers/Root/Root';
 import { browserHistory } from 'react-router';
-
 import  {store as mobxStore}  from './stores/index'; 
+import { listener } from './socketListener';
 
 //sessionStorage.clear();
 
@@ -27,6 +27,8 @@ const storeCreator = compose(applyMiddleware(dispatcher()));
 const create = storeCreator(createStore);
 
 const reduxStore = create(reducers);
+
+listener(mobxStore);
 
 ReactDOM.render(
 <Provider {...mobxStore}>

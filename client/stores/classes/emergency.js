@@ -5,6 +5,7 @@ import { hydrate } from './auth';
 
 class Emergency {
     @observable emergenciesList;
+    //hacer un map observable para dar formato a la tabla
 
     constructor() {
         this.emergenciesList = [];

@@ -3,10 +3,7 @@ import { cf } from '../../client.scss';
 import { Table } from '../../components/Table/Table';
 import { Header } from '../../components/Header/Header';
 import { inject, observer } from 'mobx-react';
-
-// alimentar el store con la respuesta del api
-// 
-
+import { emergencyListener, connectSocket } from '../../socketListener';
 
 @inject("emergency", "auth")
 @observer
@@ -18,8 +15,43 @@ class Home extends Component {
 
     async componentWillMount () {
      await this.props.emergency.getEmergencies();
-      //console.log("response",this.props.emergency.emergencies);
     };
+
+
+
+ /* 
+ async componentDidMount () {
+      await emergencyListener();
+    }
+
+
+    async componentDidMount () {
+
+      emergencyListener();
+
+     
+      const socket = connectSocket();
+      socket.on(socketIOMsgType.NEW_EMERGENCY, async data => {
+        console.log(data);
+        if (!('emergencyId' in data))
+          return;
+
+        await this.props.emergencies.getEmergencies();
+    });
+
+   
+    } */
+
+    /*
+    async componentWillReceiveProps () {
+      console.log('willReceiveprops');
+      const res = await getEmergencySocket();
+     // if (!(res.hasOwnProperty('emergencyId')))
+       // return;
+        console.log(res);
+     // await this.props.emergency.getEmergencies();
+    }
+  */
 
     render() {
       console.log("response",this.props.emergency.emergencies);

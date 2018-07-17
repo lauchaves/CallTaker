@@ -27,10 +27,8 @@ export const postEmergencies = async (emergency) => {
     const emergencyId = uuid.v4(); 
 
     const queryResult = await knex(emergencyTable).insert({emergency_id: emergencyId,emergency_type: emergencyType,
-         description: emergencyDescription});
+         description: emergencyDescription}).returning('emergency_id');
 
-    //console.log('dal query', queryResult);
-
-    return queryResult;
+    return queryResult.toString();
 };
 
