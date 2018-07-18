@@ -5,15 +5,21 @@ export const getEmergencies = async () => {
     const schema = 'call_taker';
     const emergencyTable= `${schema}.emergency`;
     const dispatch_emergencyTable=`${schema}.dispatch_emergency`
+    const userTable= `${schema}.user`;
 
     const queryResult = await 
     knex.select(`${emergencyTable}.emergency_type`,`${emergencyTable}.description`,
-               (knex.raw(`${dispatch_emergencyTable}.dispatch_info->>'userId' AS userId , 
-                          ${dispatch_emergencyTable}.dispatch_info->>'timeStamp' AS timeStamp` )))
+                `${userTable}.user_name`,
+                (knex.raw(` ${dispatch_emergencyTable}.dispatch_info->>'timeStamp' AS timeStamp` )))
     .from(`${emergencyTable}`)
-    .leftJoin(`${dispatch_emergencyTable}`, `${emergencyTable}.emergency_id`, '=', `${dispatch_emergencyTable}.emergency_id`);
+    .leftJoin(`${dispatch_emergencyTable}`, `${emergencyTable}.emergency_id`, '=', `${dispatch_emergencyTable}.emergency_id`)
+    .leftJoin(`${userTable}`, (knex.raw(`${userTable}.user_id::text`)), (knex.raw(`${dispatch_emergencyTable}.dispatch_info->>'userId'`)));
+
+    console.log('queryResult',queryResult);
 
     return queryResult.length ? queryResult : [];
+
+    
 
 };
 

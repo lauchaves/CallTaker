@@ -6,9 +6,16 @@ import { hydrate } from './auth';
 class Emergency {
     @observable emergenciesList;
     //hacer un map observable para dar formato a la tabla
+    @observable handleEmergencygMapping;
 
     constructor() {
         this.emergenciesList = [];
+        this.handleEmergencygMapping = {
+            emergency_type: 'Emergency Type',
+            description: 'Description',
+            user_name: 'User',
+            timestamp: 'Time Stamp'
+        };
     };
 
     @computed get emergencies () {
@@ -24,3 +31,4 @@ class Emergency {
 };
 
 export default new Emergency();
+

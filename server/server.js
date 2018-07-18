@@ -34,6 +34,6 @@ app.listen(5000, async () => {
         {type: emergencyType.PHONE, description: "Building Fire"},{type: emergencyType.PHONE, description: "Heart Attack"},
     {type: emergencyType.SMS, description:"Drowning"}];
 
-    await mockQueueMessages(messagesList);
-    await receiveMessages();
+   // await mockQueueMessages(messagesList);
+   // await receiveMessages();
 });

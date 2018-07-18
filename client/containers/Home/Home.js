@@ -17,50 +17,13 @@ class Home extends Component {
      await this.props.emergency.getEmergencies();
     };
 
-
-
- /* 
- async componentDidMount () {
-      await emergencyListener();
-    }
-
-
-    async componentDidMount () {
-
-      emergencyListener();
-
-     
-      const socket = connectSocket();
-      socket.on(socketIOMsgType.NEW_EMERGENCY, async data => {
-        console.log(data);
-        if (!('emergencyId' in data))
-          return;
-
-        await this.props.emergencies.getEmergencies();
-    });
-
-   
-    } */
-
-    /*
-    async componentWillReceiveProps () {
-      console.log('willReceiveprops');
-      const res = await getEmergencySocket();
-     // if (!(res.hasOwnProperty('emergencyId')))
-       // return;
-        console.log(res);
-     // await this.props.emergency.getEmergencies();
-    }
-  */
-
     render() {
-      console.log("response",this.props.emergency.emergencies);
-      const testList = [{ Type: "Robbery", Description: "Robbery at bank" }, { Type: "Fire", Description: "Fire at Park" } ];
+      //console.log("response",this.props.emergency.handleEmergencygMapping);
       return (
         <div>
           <Header/>
           <br/>
-          <Table list={this.props.emergency.emergencies} />
+          <Table mapping={this.props.emergency.handleEmergencygMapping} list={this.props.emergency.emergencies} />
         </div>
       );
     
