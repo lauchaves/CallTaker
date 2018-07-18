@@ -23,7 +23,7 @@ class Home extends Component {
         <div>
           <Header/>
           <br/>
-          <Table mapping={this.props.emergency.handleEmergencygMapping} list={this.props.emergency.emergencies} />
+          <Table emergencyTypeMapping={this.props.emergency.emergencyTypeMapping} headerMapping={this.props.emergency.emergencyHeaderMapping} list={this.props.emergency.emergencies} />
         </div>
       );
     

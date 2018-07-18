@@ -11,16 +11,17 @@ export const getEmergencies = async () => {
     knex.select(`${emergencyTable}.emergency_type`,`${emergencyTable}.description`,
                 `${userTable}.user_name`,
                 (knex.raw(` ${dispatch_emergencyTable}.dispatch_info->>'timeStamp' AS timeStamp` )))
-    .from(`${emergencyTable}`)
-    .leftJoin(`${dispatch_emergencyTable}`, `${emergencyTable}.emergency_id`, '=', `${dispatch_emergencyTable}.emergency_id`)
-    .leftJoin(`${userTable}`, (knex.raw(`${userTable}.user_id::text`)), (knex.raw(`${dispatch_emergencyTable}.dispatch_info->>'userId'`)));
+    .from(emergencyTable)
+    .leftJoin(dispatch_emergencyTable, `${emergencyTable}.emergency_id`, '=', `${dispatch_emergencyTable}.emergency_id`)
+    .leftJoin(userTable, (knex.raw(`${userTable}.user_id::text`)), (knex.raw(`${dispatch_emergencyTable}.dispatch_info->>'userId'`)));
 
-    console.log('queryResult',queryResult);
+    //console.log('queryResult',queryResult);
+
+
 
     return queryResult.length ? queryResult : [];
 
     
-
 };
 
 export const postEmergencies = async (emergency) => {

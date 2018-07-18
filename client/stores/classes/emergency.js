@@ -10,7 +10,7 @@ class Emergency {
 
     constructor() {
         this.emergenciesList = [];
-        this.handleEmergencygMapping = {
+        this.emergencyHeaderMapping = {
             emergency_type: 'Emergency Type',
             description: 'Description',
             user_name: 'User',
@@ -23,7 +23,6 @@ class Emergency {
     }
 
     @action getEmergencies = async () => {
-        console.log('emergency store');
 
         this.emergenciesList = await makeGet(`${constants.SERVER_URL}${constants.EMERGENCY_URL}`);
     };

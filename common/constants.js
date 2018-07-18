@@ -1,0 +1,1 @@
+export const emergencyType = { phoneCall: 'Phone Call', sms: 'SMS' };

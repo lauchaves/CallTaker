@@ -9,11 +9,6 @@ import { browserHistory } from 'react-router';
 import  {store as mobxStore}  from './stores/index'; 
 import { listener } from './socketListener';
 
-//sessionStorage.clear();
-
-
-//console.log(mobxStore); // this returns -> {authStore: Auth, emergencyStore: Emergency}
-
 const reducers = combineReducers({login, form: formReducer});
 
 const dispatcher = () => ({ getState, dispatch }) => next => action => {

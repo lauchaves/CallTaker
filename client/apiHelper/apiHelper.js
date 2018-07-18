@@ -5,7 +5,6 @@ import { hydrate } from '../stores/classes/auth';
 
 const setHeaders = (req) => req.set('authorization', getToken()).accept('application/json');
 
-
 export const makePost = async (url, payload) => {
     const response = await
     request
@@ -19,11 +18,9 @@ export const makePost = async (url, payload) => {
         sessionStorage.clear();
         hydrate(null);
         browserHistory.push('/');
-    }
-
+    };
     return response;
-
-}
+};
 
 export const makeGet = async url => {
     const response = await request.get(url).use(setHeaders);
@@ -32,11 +29,8 @@ export const makeGet = async url => {
         sessionStorage.clear();
         hydrate(null);
         browserHistory.push('/');
-    } 
-
-    console.log(response);
-
+    };
+    //console.log(response);
     return JSON.parse(response.text);
-
 };
 

@@ -2,8 +2,7 @@ import React from 'react';
 import { Row } from './Row';
 import { cf } from '../../client.scss';
 
-export const Table = ({list, mapping}) => {
-    console.log(mapping);
+export const Table = ({list, headerMapping, emergencyTypeMapping}) => {
     if (!list || !list.length ) return <div>No items to display</div>;
     const emergencyKeys = Object.keys(list[0]);
 
@@ -11,10 +10,10 @@ export const Table = ({list, mapping}) => {
         <div data-component="Table" className={ cf("div-table") }>
             <div className={ cf("div-table-row table-header")}>
                 { emergencyKeys.map( (key, index) => 
-                <div key={index}  className={ cf("div-table-col")}>{ mapping[key] }</div> ) }
+                <div key={index}  className={ cf("div-table-col")}>{ headerMapping[key] }</div> ) }
             </div>
 
-            {list.map( (row, index) => <Row key={index} item={row} />)}
+            {list.map( (row, index) => <Row key={index} emergencyTypeMapping={emergencyTypeMapping} item={row} />)}
         </div>
     );
     
