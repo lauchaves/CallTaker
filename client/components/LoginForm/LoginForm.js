@@ -12,7 +12,6 @@ class LoginForm extends Component {
   }
 
   setValue = (event, newValue, previousValue, name) => {
-    console.log(newValue);
     this.state.model[name] = newValue;
    };
 
@@ -20,7 +19,6 @@ class LoginForm extends Component {
       const { handleSubmit } = this.props;
       const model = this.state.model;
       const notLogged = <label> Unable to authenticate. Try Again</label>;
-      console.log(this.props.isLogged);
       const error = this.props.isLogged ? null : <label> Unable to authenticate. Try Again</label> ;
 
 

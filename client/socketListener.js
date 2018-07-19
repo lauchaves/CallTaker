@@ -3,7 +3,6 @@
 import * as constants from '../server/constants';
 import io from 'socket.io-client';
 
-
 //export let emergencySocketinfo;
 const { socketIOMsgType } = constants;
 

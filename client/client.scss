@@ -1,4 +1,4 @@
-$mainColor:  #4CAF50;
+$mainColor:  #3b5998;
 $boxShadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 
 body {
@@ -52,8 +52,9 @@ button:hover {
 }
 
 .div-table {
+  position: absolute;
   display: table;
-  margin: 0 auto 100px;
+  margin: auto 20%;
   padding: 30px 35px 35px;
   box-shadow: $boxShadow;
   width: auto;         

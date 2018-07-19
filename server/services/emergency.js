@@ -8,16 +8,21 @@ export const getEmergencies = async () => {
 
     const { emergencyType }= constants;
     
-    const formattedResult = result.map( emergency => { 
-        return { ...emergency, emergency_type: emergencyType[emergency.emergency_type]  };
-    });
+    const formattedResult = result.map( emergency => {
 
+        return Object.assign({}, emergency, {
+            emergency_type:  emergencyType[emergency.emergency_type]
+          });
+        });
+
+    // ({...emergency, emergency_type: emergencyType[emergency.emergency_type]})
+    
     //console.log(formattedResult);
 
     return formattedResult;
 };
 
-export const postEmergencies = async (emergency) => {
+export const postEmergencies = async emergency => {
     
     try {
         const result = await dal.postEmergencies(emergency);

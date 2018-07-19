@@ -2,7 +2,8 @@ import React from 'react';
 import { Row } from './Row';
 import { cf } from '../../client.scss';
 
-export const Table = ({list, headerMapping, emergencyTypeMapping}) => {
+export const Table = ({list, headerMapping, emergencyTypeMapping, onRowClick}) => {
+
     if (!list || !list.length ) return <div>No items to display</div>;
     const emergencyKeys = Object.keys(list[0]);
 
@@ -13,7 +14,7 @@ export const Table = ({list, headerMapping, emergencyTypeMapping}) => {
                 <div key={index}  className={ cf("div-table-col")}>{ headerMapping[key] }</div> ) }
             </div>
 
-            {list.map( (row, index) => <Row key={index} emergencyTypeMapping={emergencyTypeMapping} item={row} />)}
+            {list.map( (row, index) => <Row onRowClick={onRowClick} key={index} emergencyTypeMapping={emergencyTypeMapping} item={row} />)}
         </div>
     );
     
