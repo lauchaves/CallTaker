@@ -10,7 +10,7 @@ import { makeDispatch } from '../../redux/modules/dispatch';
 @connect(
   state => ({
     dispatchSuccess: state.dispatch.dispatchSuccess,
-    dispatchResponse: state.dispatch.dispatchResponse
+    dispatchResponse: state.dispatch.dispatchResponse,
   }),
   dispatch =>
     bindActionCreators({makeDispatch},dispatch)
@@ -26,10 +26,10 @@ class Dispatch extends Component {
 
 
     handleSubmit = async () =>  {
-      console.log(this.props.emergencyId);
+      console.log(this.props.currentEmergency.id);
 
       const formattedEmergencyModel = this.state.model;
-      formattedEmergencyModel.emergency_id=this.props.emergencyId;
+      formattedEmergencyModel.emergency_id= this.props.currentEmergency.id;
       console.log('new obj',formattedEmergencyModel);
       
 
@@ -38,7 +38,7 @@ class Dispatch extends Component {
     };
 
     render() {
-      const { onCloseDialog } = this.props;
+      const { onCloseDialog, currentEmergency } = this.props;
       return (
       <div id="dispatchDialog" className= { cf("modal-content") }>
         <div className={ cf("modal-header") }>
@@ -48,7 +48,7 @@ class Dispatch extends Component {
           <h2>Emergency Information</h2>
         </div>
         <div className={ cf("modal-body") }>
-           <DispatchForm model={this.state.model} handleSubmit={this.handleSubmit}/>
+           <DispatchForm currentEmergency={currentEmergency} model={this.state.model} handleSubmit={this.handleSubmit}/>
         </div>
       </div>
       );

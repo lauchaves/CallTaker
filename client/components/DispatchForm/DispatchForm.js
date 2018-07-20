@@ -24,13 +24,33 @@ class DispatchForm extends Component {
    };
 
   render() {
-      const { handleSubmit } = this.props;
+      const { handleSubmit, currentEmergency} = this.props;
       const model = this.state.model;
-
       return (
         <div className={ cf("container") }>
           <div>
             <form href="#" onSubmit={ async (event)=> {event.preventDefault();  await handleSubmit();}}>  
+              <div>
+                    <label className={ cf("labelTitle") }>Emergency Type: </label> 
+                    <Field
+                    placeholder={currentEmergency.emergency_type}
+                    name="emergency_type"
+                    component="input"
+                    type="text"
+                    readOnly="readOnly"
+                />
+                </div> 
+                <div>
+                    <label className={ cf("labelTitle") }>Description: </label> 
+                    <Field
+                    placeholder={currentEmergency.description}
+                    name="description"
+                    component="input"
+                    type="text"
+                    readOnly="readOnly"
+                />
+                </div> 
+
                 <div>
                     <label className={ cf("labelTitle") }>Fullname: </label> 
                     <Field

@@ -27,13 +27,13 @@ export default (state = {}, action = {}) => {
       
       dispatch({type: DISPATCH});
       const result = await makePut(`${constants.SERVER_URL}${constants.UPDATE_EMERGENCY_URL}`, model);
-      const finalRes = JSON.parse(result.text);
+      console.log(result);
       
-      if (finalRes.auth == false) {
-        dispatch({ type: DISPATCH_FAIL, result: finalRes});
+      if (result.success == true) {
+        dispatch({ type: DISPATCH_SUCCESS, result: result});
       }
       else {
-        dispatch({type: DISPATCH_SUCCESS, result: finalRes });
+        dispatch({type: DISPATCH_FAIL, result: result });
       };
   
     };

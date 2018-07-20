@@ -35,8 +35,8 @@ export const makeGet = async url => {
 };
 
 
-export const makePut= async url => {
-    const response = await request.put(url).use(setHeaders);
+export const makePut= async (url, payload) => {
+    const response = await request.put(url).send(payload).use(setHeaders).accept('application/json');
 
     if (response.statusCode == 401) {
         sessionStorage.clear();
@@ -44,6 +44,6 @@ export const makePut= async url => {
         browserHistory.push('/');
     };
     console.log(response);
-    return JSON.parse(response.text);
+    return (response.text);
 };
 

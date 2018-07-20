@@ -34,7 +34,7 @@ export const postEmergencies = async emergency => {
 export const putEmergencies = async emergency => {
     try {
         const result = await dal.putEmergencies(emergency);
-        return result; // emergency_id
+        return {success: true, result:result}; // emergency_id
 
     }catch (err) {
         console.log(err);
