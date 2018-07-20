@@ -7,9 +7,12 @@ class Emergency {
     @observable emergenciesList;
     //hacer un map observable para dar formato a la tabla
     @observable handleEmergencygMapping;
+    @observable emergencyTableExcludedColumns;
 
     constructor() {
         this.emergenciesList = [];
+        this.emergencyTableExcludedColumns = ['id'];
+
         this.emergencyHeaderMapping = {
             emergency_type: 'Emergency Type',
             description: 'Description',

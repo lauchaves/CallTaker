@@ -3,33 +3,37 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { cf } from './dispatch.scss';
 import DispatchForm from '../../components/DispatchForm/DispatchForm';
+import { emergencyModel } from '../../models/emergency';
+import { makeDispatch } from '../../redux/modules/dispatch';
 
-import { browserHistory } from 'react-router'
 
-/*
 @connect(
-  (state, props) => ({
-    
-    
+  state => ({
+    dispatchSuccess: state.dispatch.dispatchSuccess,
+    dispatchResponse: state.dispatch.dispatchResponse
   }),
   dispatch =>
-    //bindActionCreators({login},dispatch)
+    bindActionCreators({makeDispatch},dispatch)
 )
-*/
 class Dispatch extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
-    }
-
-    componentWillReceiveProps(nextProps){
-        
+        this.state = {
+          model: emergencyModel
+        };
     }
 
 
     handleSubmit = async () =>  {
-      // save dispatch
+      console.log(this.props.emergencyId);
+
+      const formattedEmergencyModel = this.state.model;
+      formattedEmergencyModel.emergency_id=this.props.emergencyId;
+      console.log('new obj',formattedEmergencyModel);
+      
+
+      await this.props.makeDispatch(formattedEmergencyModel);
 
     };
 
@@ -44,17 +48,11 @@ class Dispatch extends Component {
           <h2>Emergency Information</h2>
         </div>
         <div className={ cf("modal-body") }>
-           <DispatchForm />
+           <DispatchForm model={this.state.model} handleSubmit={this.handleSubmit}/>
         </div>
       </div>
       );
     };
   };
 
-  export default Dispatch;
-
-   /*       <!-- <div className={ cf("modal-footer") }>
-  <h3>Modal Footer</h3>
-  </div>
-
-  */
+export default Dispatch;

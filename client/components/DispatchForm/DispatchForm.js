@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form'
 import { cf } from './dispatchForm.scss';
+import * as constants from '../../constants';
+import { makeGet } from './../../apiHelper/apiHelper';
 
 class DispatchForm extends Component {
   
   constructor(props) {
     super(props);
     this.state = {
-      //model: props.model
+      model: props.model,
+      resources: []
     };
   }
 
   setValue = (event, newValue, previousValue, name) => {
-    console.log(newValue);
-    //this.state.model[name] = newValue;
+    this.state.model[name] = newValue;
+   };
+
+   async componentWillMount () {
+    const getResources  = await makeGet(`${constants.SERVER_URL}${constants.GET_RESOURCE}`);
+    this.setState({resources: getResources});
    };
 
   render() {
@@ -23,67 +30,62 @@ class DispatchForm extends Component {
       return (
         <div className={ cf("container") }>
           <div>
-            <form href="#" onSubmit={ async (event)=> {event.preventDefault();  await handleSubmit();}}>
-                <div>
-                    <label className={ cf("labelTitle") }>Emergency Status: </label>
-                    <Field name="status" component="select">
-                        <option></option>
-                        <option value="ff0000">Awaiting</option>
-                        <option value="00ff00">Taken</option>
-                    </Field>
-                </div>
-                
+            <form href="#" onSubmit={ async (event)=> {event.preventDefault();  await handleSubmit();}}>  
                 <div>
                     <label className={ cf("labelTitle") }>Fullname: </label> 
                     <Field
-                    //value= {model.email}
+                    value= {model.fullname}
                     name="fullname"
                     component="input"
                     type="text"
                     placeholder="Fullname"
-                    //onChange={this.setValue}
+                    onChange={this.setValue}
                 />
                 </div> 
                 <div>
                     <label className={ cf("labelTitle") }>Address: </label> 
                     <Field
-                    //value= {model.email}
+                    value= {model.address}
                     name="address"
                     component="input"
                     type="text"
                     placeholder="Address"
-                    //onChange={this.setValue}
+                    onChange={this.setValue}
                 />
                 </div>
                 <div>
                     <label className={ cf("labelTitle") }>Phone: </label> 
                     <Field
-                    //value= {model.email}
+                    value= {model.phone}
                     name="phone"
                     component="input"
                     type="text"
                     placeholder="Phone"
-                    //onChange={this.setValue}
+                    onChange={this.setValue}
                 />
                 </div>
                 <div>
-                    <label className={ cf("labelTitle") }>Description: </label> 
+                    <label className={ cf("labelTitle") }>Details: </label> 
                     <Field
-                    //value= {model.email}
-                    name="Description"
+                    value= {model.details}
+                    name="details"
                     component="input"
                     type="text"
-                    placeholder="Description"
-                    //onChange={this.setValue}
+                    placeholder="Details"
+                    onChange={this.setValue}
                 />
                 </div> 
                 <div> 
                     <label className={ cf("labelTitle") } >Resource:  </label>
-                    <Field name="resources" component="select">
-                        <option></option>
-                        <option value="ff0000">Fireman</option>
-                        <option value="00ff00">Police</option>
-                        <option value="0000ff">Doctor</option>
+                    <Field 
+                    value= {model.resource}
+                    name="resource" 
+                    component="select"
+                    onChange={this.setValue}
+                    >
+                    <option></option>
+                    {this.state.resources.map( (resource, index) => <option key={index} value={resource.resource_id}>{resource.resource_name}</option> )}
+                        
                     </Field>
                 </div> 
               <button type="submit" label="submit">Dispatch</button>
@@ -95,4 +97,4 @@ class DispatchForm extends Component {
 }
   
 
-export default reduxForm({ form: 'dispatch' })(DispatchForm);
+export default reduxForm({ form: 'makeDispatch' })(DispatchForm);

@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import {reducer as formReducer} from 'redux-form';
-import login from './redux/modules/loginReducer';
+import {reduxReducers} from './redux/modules/indexReducers';
 import Root from './containers/Root/Root';
 import { browserHistory } from 'react-router';
 import  {store as mobxStore}  from './stores/index'; 
 import { listener } from './socketListener';
 
-const reducers = combineReducers({login, form: formReducer});
+const reducers = combineReducers({...reduxReducers, form: formReducer});
 
 const dispatcher = () => ({ getState, dispatch }) => next => action => {
   if (typeof action === 'function') {

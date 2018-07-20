@@ -13,11 +13,14 @@ class Home extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        show:false
+        show:false,
+        emergencyIdClicked: null
       }
     }
 
-    displayEmergencyDialog = () => {
+    displayEmergencyDialog = emergencyId => {
+        console.log(emergencyId);
+        this.setState({emergencyIdClicked: emergencyId});
         this.setState({show:true});
     }
 
@@ -33,13 +36,13 @@ class Home extends Component {
 
     render() {
 
-      const dialog = this.state.show ? <Dispatch  onCloseDialog = {this.closeDialog}/> : null;
+      const dialog = this.state.show ? <Dispatch emergencyId={this.state.emergencyIdClicked} onCloseDialog = {this.closeDialog}/> : null;
 
       return (
         <div>
           <Header/>
           <br/>
-          <Table onRowClick={this.displayEmergencyDialog}  headerMapping={this.props.emergency.emergencyHeaderMapping} list={this.props.emergency.emergencies} />
+          <Table excludedColumns={this.props.emergency.emergencyTableExcludedColumns} onRowClick={this.displayEmergencyDialog}  headerMapping={this.props.emergency.emergencyHeaderMapping} list={this.props.emergency.emergencies} />
           {dialog}
         </div>
       );

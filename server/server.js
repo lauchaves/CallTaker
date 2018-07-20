@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
     next();
 });
 
@@ -34,6 +35,6 @@ app.listen(5000, async () => {
         {type: emergencyType.PHONE, description: "Building Fire"},{type: emergencyType.PHONE, description: "Heart Attack"},
     {type: emergencyType.SMS, description:"Drowning"}];
 
-   await mockQueueMessages(messagesList);
-   await receiveMessages();
+   //await mockQueueMessages(messagesList);
+  // await receiveMessages();
 });

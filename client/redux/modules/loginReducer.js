@@ -2,7 +2,6 @@ import { makePost } from '../../apiHelper/apiHelper';
 import * as constants from '../../constants';
 import { getToken, setToken } from '../helpers/sessionhelper';
 
-
 const LOGIN= 'LOGIN';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGIN__FAIL = 'LOGIN__FAIL';

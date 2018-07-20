@@ -5,6 +5,7 @@ import { getToken } from '../../redux/helpers/sessionhelper';
 import Home from '../Home/Home';
 import  mobxStore  from '../../stores'; 
 import { Provider } from 'react-redux';
+import Dispatch from '../Dispatch/Dispatch';
 
 
   class Root extends Component {
@@ -32,6 +33,10 @@ import { Provider } from 'react-redux';
                 component: Home,
                 
               },
+              {
+                path:'/dispatch',
+                component: Dispatch,
+              }
             ],
           };
           this.state = { routes };

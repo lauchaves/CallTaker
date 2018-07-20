@@ -34,3 +34,16 @@ export const makeGet = async url => {
     return JSON.parse(response.text);
 };
 
+
+export const makePut= async url => {
+    const response = await request.put(url).use(setHeaders);
+
+    if (response.statusCode == 401) {
+        sessionStorage.clear();
+        hydrate(null);
+        browserHistory.push('/');
+    };
+    console.log(response);
+    return JSON.parse(response.text);
+};
+
