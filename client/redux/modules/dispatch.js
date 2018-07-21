@@ -1,4 +1,4 @@
-import { makePut } from '../../apiHelper/apiHelper';
+import { makePut, makePost } from '../../apiHelper/apiHelper';
 import * as constants from '../../constants';
 
 const DISPATCH = 'DISPATCH';
@@ -12,7 +12,7 @@ export default (state = {}, action = {}) => {
       case DISPATCH:
         return state;
       case DISPATCH_SUCCESS: {
-        console.log(action.result);
+        console.log('Dispatch: ',action.result);
         return { dispatchSuccess: true, response: action.result};
       };
       case DISPATCH_FAIL:
@@ -23,18 +23,32 @@ export default (state = {}, action = {}) => {
   };
   
   export const makeDispatch = model => async dispatch => {
-      console.log(`${constants.SERVER_URL}${constants.UPDATE_EMERGENCY_URL}`);
+      console.log("MAke dispatch") ;
+      const dispatchInfo = { resourceId: model.resource, timeStamp: Date.now(), emergencyId: model.emergency_id };
       
       dispatch({type: DISPATCH});
-      const result = await makePut(`${constants.SERVER_URL}${constants.UPDATE_EMERGENCY_URL}`, model);
-      console.log(result);
-      
-      if (result.success == true) {
+      const resultUpdate = await makePut(`${constants.SERVER_URL}${constants.UPDATE_EMERGENCY_URL}`, model);
+      const resultDispatch = await makePost(`${constants.SERVER_URL}${constants.POST_DISPATCH}`, dispatchInfo);
+
+      const update = JSON.parse(resultUpdate);
+
+      const newDispatch = JSON.parse(resultDispatch.text);
+
+      console.log(update, '1');
+      console.log(newDispatch, '2');
+
+
+
+
+
+      if ((update.success) && (newDispatch.success)) {
+        const result = { success: true, result: { resultUpdate: resultUpdate, resultDispatch: resultDispatch } };
         dispatch({ type: DISPATCH_SUCCESS, result: result});
       }
       else {
-        dispatch({type: DISPATCH_FAIL, result: result });
+        dispatch({type: DISPATCH_FAIL, result: { resultUpdate: resultUpdate, resultDispatch: resultDispatch } });
       };
+      
   
     };
   

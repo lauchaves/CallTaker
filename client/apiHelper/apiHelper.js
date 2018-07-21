@@ -30,7 +30,6 @@ export const makeGet = async url => {
         hydrate(null);
         browserHistory.push('/');
     };
-    //console.log(response);
     return JSON.parse(response.text);
 };
 
@@ -43,7 +42,6 @@ export const makePut= async (url, payload) => {
         hydrate(null);
         browserHistory.push('/');
     };
-    console.log(response);
     return (response.text);
 };
 

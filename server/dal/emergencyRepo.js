@@ -45,7 +45,7 @@ export const postEmergencies = async (emergency) => {
 
 
 export const putEmergencies = async emergencyInfo => {
-    console.log('emergency Repo','putEmergency', emergencyInfo);
+    //console.log('emergency Repo','putEmergency', emergencyInfo);
     const schema = 'call_taker';
     const emergencyTable= `${schema}.emergency`;
     const emergencyId = emergencyInfo.emergency_id;

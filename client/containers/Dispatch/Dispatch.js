@@ -30,11 +30,8 @@ class Dispatch extends Component {
 
       const formattedEmergencyModel = this.state.model;
       formattedEmergencyModel.emergency_id= this.props.currentEmergency.id;
-      console.log('new obj',formattedEmergencyModel);
-      
-
       await this.props.makeDispatch(formattedEmergencyModel);
-
+      this.props.onCloseDialog();
     };
 
     render() {

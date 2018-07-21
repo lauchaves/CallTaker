@@ -33,6 +33,8 @@ export const login = model => async dispatch => {
     
     dispatch({type: LOGIN});
     const result = await makePost(`${constants.AUTH_URL}${constants.LOGIN_API_URL}`, model);
+    //console.log(result);
+
     const finalRes = JSON.parse(result.text);
     
     if (finalRes.auth == false) {

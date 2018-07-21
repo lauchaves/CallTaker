@@ -3,7 +3,6 @@ import { notify } from '../socketIO';
 import * as constants from '../../common/constants';
 
 export const getEmergencies = async () => {
-    console.log('service');
     const result = await dal.getEmergencies();
 
     const { emergencyType }= constants;

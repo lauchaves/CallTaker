@@ -1,16 +1,16 @@
 import { knex } from '../database/knex';
 import uuid from 'uuid';
+import jwt from 'jsonwebtoken';
 
 export const postDispatch = async dispatch => {
-    //console.log('dal emergency', emergency);
-    
+
     const schema = 'call_taker';
     const dispatchEmergency= `${schema}.dispatch_emergency`;
-
-    const resourceId = dispatch.resource_id;
-    const emergencyId = dispatch.emergency_id;
+    const resourceId = dispatch.resourceId;
+    const emergencyId = dispatch.emergencyId;
     const dispatchId = uuid.v4(); 
-    const dispatchInfo = dispatch.dispatch_info;
+    const decode = jwt.decode(dispatch.token);
+    const dispatchInfo = { userId: decode.userId, timeStamp: dispatch.timeStamp};
 
     const queryResult = await 
     knex(dispatchEmergency).insert({
