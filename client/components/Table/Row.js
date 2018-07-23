@@ -4,8 +4,7 @@ import { cf } from '../../client.scss';
 
 export const Row = ({item, onRowClick, excludedColumns}) => 
 <div onClick={ ()=>  onRowClick(item) } data-component="Row" className={ cf("div-table-row")} >
-    {Object.keys(item).reduce( (acc, key ,index)  => { 
-
+    {Object.keys(item).reduce( (acc, key ,index)  => {
         if ( excludedColumns.some(excludedColumn => excludedColumn === key )) 
             return acc;
 

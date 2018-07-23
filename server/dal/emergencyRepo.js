@@ -8,8 +8,8 @@ export const getEmergencies = async () => {
     const userTable= `${schema}.user`;
 
     const queryResult = await 
-    knex.select(`${emergencyTable}.id`,`${emergencyTable}.emergency_type`,`${emergencyTable}.description`,
-                `${userTable}.user_name`,
+    knex.select(`${emergencyTable}.id`,`${emergencyTable}.emergency_state`,`${emergencyTable}.emergency_type`,`${emergencyTable}.description`,
+                `${userTable}.user_name`,`${dispatch_emergencyTable}.dispatch_id`,
                 (knex.raw(` ${dispatch_emergencyTable}.dispatch_info->>'timeStamp' AS timeStamp` )))
     .from(emergencyTable)
     .leftJoin(dispatch_emergencyTable, `${emergencyTable}.id`, '=', `${dispatch_emergencyTable}.emergency_id`)

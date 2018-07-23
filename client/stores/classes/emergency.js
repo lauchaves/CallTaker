@@ -2,6 +2,7 @@ import {observable, computed, reaction, action } from 'mobx';
 import { makeGet } from '../../apiHelper/apiHelper';
 import * as constants from '../../constants';
 import { hydrate } from './auth';
+import dispatch from '../../redux/modules/dispatch';
 
 class Emergency {
     @observable emergenciesList;
@@ -11,9 +12,10 @@ class Emergency {
 
     constructor() {
         this.emergenciesList = [];
-        this.emergencyTableExcludedColumns = ['id'];
+        this.emergencyTableExcludedColumns = ['id', 'dispatch_id'];
 
         this.emergencyHeaderMapping = {
+            emergency_state: 'Status',
             emergency_type: 'Emergency Type',
             description: 'Description',
             user_name: 'User',

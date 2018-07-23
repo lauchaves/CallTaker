@@ -24,7 +24,8 @@ export default (state = {}, action = {}) => {
   
   export const makeDispatch = model => async dispatch => {
       console.log("MAke dispatch") ;
-      const dispatchInfo = { resourceId: model.resource, timeStamp: Date.now(), emergencyId: model.emergency_id };
+      const d = new Date();
+      const dispatchInfo = { dispatch_id: model.dispatch_id, resourceId: model.resource, timeStamp: d.toLocaleString(), emergencyId: model.emergency_id };
       
       dispatch({type: DISPATCH});
       const resultUpdate = await makePut(`${constants.SERVER_URL}${constants.UPDATE_EMERGENCY_URL}`, model);

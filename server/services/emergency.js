@@ -13,7 +13,6 @@ export const getEmergencies = async () => {
             emergency_type:  emergencyType[emergency.emergency_type]
           });
         });
-
     return formattedResult;
 };
 
