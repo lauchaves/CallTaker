@@ -12,7 +12,7 @@ class Emergency {
 
     constructor() {
         this.emergenciesList = [];
-        this.emergencyTableExcludedColumns = ['id', 'dispatch_id'];
+        this.emergencyTableExcludedColumns = ['id', 'dispatch_id', 'person_id'];
 
         this.emergencyHeaderMapping = {
             emergency_state: 'Status',

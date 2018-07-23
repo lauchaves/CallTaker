@@ -63,6 +63,17 @@ class DispatchForm extends Component {
                 />
                 </div> 
                 <div>
+                    <label className={ cf("labelTitle") }>Identity Card: </label> 
+                    <Field
+                    value= {model.person_id}
+                    name="personId"
+                    component="input"
+                    type="text"
+                    placeholder="Identity Card"
+                    onChange={this.setValue}
+                />
+                </div> 
+                <div>
                     <label className={ cf("labelTitle") }>Address: </label> 
                     <Field
                     value= {model.address}

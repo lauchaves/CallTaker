@@ -8,7 +8,7 @@ export const getEmergencies = async () => {
     const userTable= `${schema}.user`;
 
     const queryResult = await 
-    knex.select(`${emergencyTable}.id`,`${emergencyTable}.emergency_state`,`${emergencyTable}.emergency_type`,`${emergencyTable}.description`,
+    knex.select(`${emergencyTable}.id`,`${emergencyTable}.person_id`,`${emergencyTable}.emergency_state`,`${emergencyTable}.emergency_type`,`${emergencyTable}.description`,
                 `${userTable}.user_name`,`${dispatch_emergencyTable}.dispatch_id`,
                 (knex.raw(` ${dispatch_emergencyTable}.dispatch_info->>'timeStamp' AS timeStamp` )))
     .from(emergencyTable)
@@ -53,6 +53,7 @@ export const putEmergencies = async emergencyInfo => {
     const emergencyAddress = emergencyInfo.address;
     const emergencyPhone = emergencyInfo.phone;
     const emergencyDetails = emergencyInfo.details;
+    const emergencyPersonId = emergencyInfo.personId;
     //const emergencyResource = emergency.resource;
     const emergencyStatus = 'Taken';
 
@@ -63,7 +64,8 @@ export const putEmergencies = async emergencyInfo => {
         address: emergencyAddress,
         phone: emergencyPhone,
         details: emergencyDetails,
-        emergency_state: emergencyStatus
+        emergency_state: emergencyStatus,
+        person_id: emergencyPersonId
     }).returning('id');
 
     return queryResult.toString();
