@@ -4,6 +4,7 @@ import * as constants from '../../constants';
 const DISPATCH = 'DISPATCH';
 const DISPATCH_SUCCESS = 'DISPATCH_SUCCESS';
 const DISPATCH_FAIL = 'DISPATCH_FAIL';
+const LOAD_EMERGENCY_INFO = 'LOAD_EMERGENCY_INFO';
 
 
 export default (state = {}, action = {}) => {
@@ -17,9 +18,12 @@ export default (state = {}, action = {}) => {
       };
       case DISPATCH_FAIL:
         return { dispatchSuccess: false, response: action.result};
+      case LOAD_EMERGENCY_INFO:
+        return { emergencyInfo: action.emergencyInfo};
       default:
         return state;
-    };
+      };
+
   };
   
   export const makeDispatch = model => async dispatch => {
@@ -38,10 +42,6 @@ export default (state = {}, action = {}) => {
       console.log(update, '1');
       console.log(newDispatch, '2');
 
-
-
-
-
       if ((update.success) && (newDispatch.success)) {
         const result = { success: true, result: { resultUpdate: resultUpdate, resultDispatch: resultDispatch } };
         dispatch({ type: DISPATCH_SUCCESS, result: result});
@@ -52,5 +52,10 @@ export default (state = {}, action = {}) => {
       
   
     };
-  
-// jest mocha
+
+
+export const loadEmergencyInfo = emergencyInfo => { 
+  console.log(emergencyInfo); 
+  return ({type: LOAD_EMERGENCY_INFO,  emergencyInfo})
+
+};

@@ -3,6 +3,9 @@ import { Field, reduxForm } from 'redux-form'
 import { cf } from './dispatchForm.scss';
 import * as constants from '../../constants';
 import { makeGet } from './../../apiHelper/apiHelper';
+import { connect } from 'react-redux';
+import { loadEmergencyInfo } from '../../redux/modules/dispatch';
+
 
 class DispatchForm extends Component {
   
@@ -19,6 +22,9 @@ class DispatchForm extends Component {
    };
 
    async componentWillMount () {
+
+    this.props.loadEmergencyInfo(this.state.model);
+
     const getResources  = await makeGet(`${constants.SERVER_URL}${constants.GET_RESOURCE}`);
     this.setState({resources: getResources});
    };
@@ -33,17 +39,20 @@ class DispatchForm extends Component {
               <div>
                     <label className={ cf("labelTitle") }>Emergency Type: </label> 
                     <Field
-                    placeholder={currentEmergency.emergency_type}
+                    value={model.emergency_type}
+                    placeholder="Emergency Type"
                     name="emergency_type"
                     component="input"
                     type="text"
                     readOnly="readOnly"
+                    
                 />
                 </div> 
                 <div>
                     <label className={ cf("labelTitle") }>Description: </label> 
                     <Field
-                    placeholder={currentEmergency.description}
+                    //value={model.description}
+                    placeholder="Description"
                     name="description"
                     component="input"
                     type="text"
@@ -54,7 +63,7 @@ class DispatchForm extends Component {
                 <div>
                     <label className={ cf("labelTitle") }>Fullname: </label> 
                     <Field
-                    value= {model.fullname}
+                    //= {model.fullname}
                     name="fullname"
                     component="input"
                     type="text"
@@ -66,7 +75,7 @@ class DispatchForm extends Component {
                     <label className={ cf("labelTitle") }>Identity Card: </label> 
                     <Field
                     value= {model.person_id}
-                    name="personId"
+                    name="person_id"
                     component="input"
                     type="text"
                     placeholder="Identity Card"
@@ -96,7 +105,7 @@ class DispatchForm extends Component {
                 />
                 </div>
                 <div>
-                    <label className={ cf("labelTitle") }>Details: </label> 
+                    <label className={ cf("labelTitle") }>Details</label> 
                     <Field
                     value= {model.details}
                     name="details"
@@ -116,7 +125,7 @@ class DispatchForm extends Component {
                     >
                     <option></option>
                     {this.state.resources.map( (resource, index) => <option key={index} value={resource.resource_id}>{resource.resource_name}</option> )}
-                        
+                    loadEmergencyInfo()
                     </Field>
                 </div> 
               <button type="submit" label="submit">Dispatch</button>
@@ -128,4 +137,13 @@ class DispatchForm extends Component {
 }
   
 
-export default reduxForm({ form: 'makeDispatch' })(DispatchForm);
+let dispatchReduxForm = reduxForm({ form: 'makeDispatch' })(DispatchForm);
+dispatchReduxForm = connect(
+    state => {
+        return ({initialValues: state.dispatch.emergencyInfo});
+    }, {loadEmergencyInfo}
+)(dispatchReduxForm);
+
+
+export default dispatchReduxForm;
+

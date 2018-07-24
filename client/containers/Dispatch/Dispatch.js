@@ -26,10 +26,14 @@ class Dispatch extends Component {
 
 
     handleSubmit = async () =>  {
+
       const formattedEmergencyModel = this.state.model;
+
       formattedEmergencyModel.emergency_id= this.props.currentEmergency.id;
       formattedEmergencyModel.dispatch_id = this.props.currentEmergency.dispatch_id;
+
       console.log('handle', formattedEmergencyModel);
+
       await this.props.makeDispatch(formattedEmergencyModel);
       this.props.onCloseDialog();
     };

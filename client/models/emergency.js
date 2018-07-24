@@ -1,7 +1,9 @@
 export const emergencyModel= {
+    emergency_type: null,
+    description: null,
     fullname: null, 
     person_id:null,
-    addres:null, 
+    address:null, 
     phone: null, 
     details: null, 
     resource: null
