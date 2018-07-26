@@ -29,6 +29,7 @@ export const postEmergencies = async (emergency) => {
     const emergencyTable= `${schema}.emergency`;
     const emergencyType = emergency.type;
     const emergencyDescription = emergency.description;
+
     const emergencyId = uuid.v4(); 
     const emergencyStatus = 'Awaiting';
 
