@@ -1,5 +1,4 @@
 import { putEmergencies, getEmergencies } from './../../services/emergency'
-import { action } from 'mobx';
 
 export const emergency  = async (req, res) => {
     //console.log('actions emergency');

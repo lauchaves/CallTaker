@@ -6,6 +6,7 @@ import { mockQueueMessages } from './workers/emitter';
 import { receiveMessages } from './workers/consumer';
 import * as constants from './workers/constants';
 import { createSocketServer } from './socketIO';
+import { setEmergencyPriority } from './services/emergencyPriority';
 
 let app = express();
 
@@ -24,7 +25,8 @@ app.use(function(req, res, next) {
 });
 
 setupApis(app);
-createSocketServer(app);
+//createSocketServer(app);
+
 
 app.listen(5000, async () => {
     console.log('server started - 5000');
@@ -35,6 +37,8 @@ app.listen(5000, async () => {
         {type: emergencyType.PHONE, description: "Building Fire"},{type: emergencyType.PHONE, description: "Heart Attack"},
     {type: emergencyType.SMS, description:"Drowning"}];
 
-   await mockQueueMessages(messagesList);
+   //await setEmergencyPriority();
+   //await mockQueueMessages(messagesList);
    await receiveMessages();
+   await setEmergencyPriority();
 });

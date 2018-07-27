@@ -6,7 +6,9 @@ import io from 'socket.io-client';
 //export let emergencySocketinfo;
 const { socketIOMsgType } = constants;
 
-const handleSocketMsgMapping = mobxStore => ({ [socketIOMsgType.NEW_EMERGENCY]: mobxStore.emergency.getEmergencies});
+const handleSocketMsgMapping = mobxStore => ({ 
+    [socketIOMsgType.NEW_EMERGENCY]: mobxStore.emergency.getEmergencies
+});
 
 
 export const connectSocket = () => {

@@ -32,13 +32,17 @@ export const postEmergencies = async (emergency) => {
 
     const emergencyId = uuid.v4(); 
     const emergencyStatus = 'Awaiting';
+    const dateTime = new Date();
+    
+    console.log('repo date', dateTime);
 
     const queryResult = await 
     knex(emergencyTable).insert({
         id: emergencyId,
         emergency_type: emergencyType,
         description: emergencyDescription,
-        emergency_state: emergencyStatus
+        emergency_state: emergencyStatus,
+        creationdate: dateTime
     }).returning('id');
 
     return queryResult.toString();
@@ -72,3 +76,14 @@ export const putEmergencies = async emergencyInfo => {
     return queryResult.toString();
 }
 
+export const getInfoEmergencyPriority = async () => {
+    const schema = 'call_taker';
+    const emergencyTable= `${schema}.emergency`;
+
+    const queryResult = await 
+    knex.select(`${emergencyTable}.id`,`${emergencyTable}.creationdate`).from(emergencyTable);
+
+    //console.log('queryResult',queryResult);
+
+    return queryResult.length ? queryResult : [];
+};

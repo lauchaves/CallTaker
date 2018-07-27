@@ -27,6 +27,16 @@ export const notify = async id => {
 }
 
 
+export const notifyPriority = async emergency => {
+    const conn = await connectIo();
+
+    const { socketIOMsgType, EMERGENCIES_ROOM } = constants;
+    //conn.on(EMERGENCIES_ROOM, ()=> {
+    console.log(socketIOMsgType.NEW_EMERGENCY, emergency);
+    conn.emit(socketIOMsgType.NEW_EMERGENCY, {emergencyPriority: emergency});
+    // });
+}
+
 
 // encargado de config el socket io 
 
